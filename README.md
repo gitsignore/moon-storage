@@ -1,28 +1,30 @@
-# Moon-Api &middot; [![GitHub license](https://img.shields.io/badge/license-MIT-blue.svg)](https://github.com/gitsignore/moon/blob/master/LICENSE)
+# Moon-Storage &middot; [![GitHub license](https://img.shields.io/badge/license-MIT-blue.svg)](https://github.com/gitsignore/moon/blob/master/LICENSE)
 
-This is the API of the following application [Moon](https://github.com/gitsignore/moon)
+This is the API part of the following application [Moon](https://github.com/gitsignore/moon)
 
 ## Installation
 
 1. Docker installation
 
-   - Install `Moon-Api` by running:
+   - Install `Moon-Storage` by running:
 
    ```sh
-   git clone https://github.com/gitsignore/moon-api && cd moon-api
+   git clone https://github.com/gitsignore/moon-storage && cd moon-storage
    ```
 
-   - Use `Moon-api`'s integrated console to launch the app:
+   - Use `Moon-Storage`'s integrated console to launch the app:
 
    ```sh
    bin/console start
    ```
 
-   - Open your browser to <http://localhost:8080/users>
+   - Open your browser to <http://localhost:8080/teams>
+
+     Replace the default 8080 port by another one in `.env` file
 
 2. Local Node/npm installation
 
-   - Install `Moon-api` by running:
+   - Install `Moon-Storage` by running:
 
    ```sh
    git clone https://github.com/gitsignore/moon-api && cd moon-api
@@ -34,14 +36,16 @@ This is the API of the following application [Moon](https://github.com/gitsignor
    npm install
    ```
 
-   - Launch `Moon` app with:
+   - Launch `Moon-Storage` app with:
 
    ```sh
    node index.js
    ```
 
-   - Open your browser to <http://localhost:8080/users>
+   - Open your browser to <http://localhost:8080/teams>
+
+   Replace the default 8080 port by another one in `.env` file
 
 ## License
 
-Moon is MIT licensed.
+Moon-Storage is MIT licensed.
