@@ -4,9 +4,9 @@ services:
     container_name: ${APP_NAME}
     image: ${APP_NAME}
     build: .
-    command: ["npm", "run", "dev"]
+    command: ['npm', 'run', 'dev']
     ports:
       - '${PORT}:${PORT}'
     volumes:
-      - .:/usr/src/app
-      - '/usr/src/app/node_modules'
+      - .:/usr/src/api
+      - /usr/src/api/node_modules
