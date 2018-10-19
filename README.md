@@ -1,4 +1,4 @@
-# Moon-Storage &middot; [![GitHub license](https://img.shields.io/badge/license-MIT-blue.svg)](https://github.com/gitsignore/moon/blob/master/LICENSE)
+# Moon-Storage &middot; [![GitHub license](https://img.shields.io/badge/license-MIT-blue.svg)](https://github.com/gitsignore/moon/blob/master/LICENSE) [![GuardRails badge](https://badges.production.guardrails.io/gitsignore/moon-storage.svg)](https://www.guardrails.io)
 
 This is the API part of the following application [Moon](https://github.com/gitsignore/moon)
 
