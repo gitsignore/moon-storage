@@ -1,6 +1,5 @@
 require('dotenv').config();
 const events = require('events');
-const path = require('path');
 const { validationResult } = require('express-validator/check');
 const cors = require('cors');
 const compression = require('compression');
@@ -15,23 +14,23 @@ const server = require('http').Server(app);
 const io = require('socket.io')(server);
 const { userSchema, teamSchema } = require('./schema');
 
-server.listen(process.env.PORT);
+server.listen(process.env.PORT || 8080);
 
-app.use(favicon(path.join(__dirname, 'public', 'favicon.ico')));
+app.use(favicon(`${__dirname}/../public/favicon.ico`));
 app.use(helmet());
+app.use(compression());
 app.use(
   cors({
-    origin: process.env.CORS_ORIGIN_URI,
-    methods: ['GET', 'PUT', 'POST', 'DELETE'],
+    origin: process.env.CORS_ORIGIN_URI || 'http://localhost:3000',
+    methods: ['GET', 'PUT', 'POST', 'DELETE']
   })
 );
-app.use(compression());
 app.use(bodyParser.json());
 app.use(logger('dev'));
 
 const em = new events.EventEmitter();
 
-const adapter = new FileSync('db.json');
+const adapter = new FileSync(`${__dirname}/../data/db.json`);
 const db = low(adapter);
 db.defaults({ teams: [] }).write();
 
@@ -93,9 +92,9 @@ app.post('/teams', teamSchema({ checkId: false }), (req, res) => {
           location: 'body',
           param: 'name',
           value: name,
-          msg: 'Team already exists',
-        },
-      },
+          msg: 'Team already exists'
+        }
+      }
     });
   }
 
@@ -136,9 +135,9 @@ app.put('/teams/:id', teamSchema(), (req, res) => {
             location: 'body',
             param: 'name',
             value: name,
-            msg: `${name} team already exists`,
-          },
-        },
+            msg: `${name} team already exists`
+          }
+        }
       });
     }
   }
