@@ -1,27 +1,38 @@
 {
-  "name": "moon-api",
+  "name": "moon-storage",
   "version": "1.0.0",
-  "description": "",
-  "main": "index.js",
-  "scripts": {
-    "dev": "nodemon -L --ignore db.json index.js"
-  },
+  "description": "Moon-Storage : API part of the following application Moon (https://github.com/gitsignore/moon)",
   "author": "Maxime Signoret",
+  "main": "src/index.js",
+  "scripts": {
+    "dev": "nodemon -L --ignore db.json src/index.js",
+    "start": "node src/index.js"
+  },
+  "keywords": [
+    "api",
+    "moon",
+    "storage",
+    "time",
+    "scheduler"
+  ],
   "license": "MIT",
   "dependencies": {
     "body-parser": "^1.18.3",
     "compression": "^1.7.3",
     "cors": "^2.8.5",
-    "dotenv": "^6.1.0",
+    "dotenv": "^7.0.0",
     "express": "^4.16.4",
-    "express-validator": "^5.3.0",
-    "helmet": "^3.15.0",
+    "express-validator": "^5.3.1",
+    "helmet": "^3.16.0",
     "lowdb": "^1.0.0",
     "morgan": "^1.9.1",
     "serve-favicon": "^2.5.0",
     "socket.io": "^2.2.0"
   },
   "devDependencies": {
-    "nodemon": "^1.18.7"
+    "eslint": "^5.15.0",
+    "eslint-config-airbnb-base": "^13.1.0",
+    "eslint-plugin-import": "^2.16.0",
+    "nodemon": "^1.18.10"
   }
 }
