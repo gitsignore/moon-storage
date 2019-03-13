@@ -1,0 +1,28 @@
+{
+  "extends": "airbnb-base",
+  "parserOptions": {
+    "ecmaVersion": 2018
+  },
+  "env": {
+    "es6": true,
+    "browser": true,
+    "mocha": true
+  },
+  "rules": {
+    "no-unused-vars": ["warn"],
+    "indent": ["error", 2],
+    "linebreak-style": ["error", "unix"],
+    "quotes": ["error", "single"],
+    "semi": ["error", "always"],
+    "comma-dangle": [
+      "error",
+      {
+        "arrays": "never",
+        "objects": "never",
+        "imports": "never",
+        "exports": "never",
+        "functions": "ignore"
+      }
+    ]
+  }
+}
