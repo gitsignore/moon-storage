@@ -1,0 +1,10 @@
+{
+  "name": "moon-storage",
+  "script": "index.js",
+  "cwd": "src/",
+  "instances": "1",
+  "exec_mode": "cluster",
+  "env": {
+    "NODE_ENV": "production"
+  }
+}

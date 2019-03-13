@@ -1,11 +1,20 @@
-FROM node:10-alpine
+FROM keymetrics/pm2:latest-alpine
+LABEL maintainer="Maxime Signoret"
 
-RUN apk update && apk upgrade && apk add --no-cache bash git openssh
+WORKDIR /usr/app
 
-RUN mkdir -p /usr/src/api
-WORKDIR /usr/src/api
+RUN mkdir data/
 
-COPY package*.json ./
-RUN npm install --quiet && npm cache clean --force
+VOLUME data/
 
-COPY . .
+COPY src src/
+COPY public public/
+COPY package.json .
+COPY pm2.json .
+
+ENV NPM_CONFIG_LOGLEVEL warn
+RUN npm install --production
+
+EXPOSE 8080
+
+CMD [ "pm2-runtime", "start", "pm2.json" ]
