@@ -4,47 +4,64 @@ This is the API part of the following application [Moon](https://github.com/gits
 
 ## Installation
 
-1. Docker installation
+1.  Local Docker installation
 
-   - Install `Moon-Storage` by running:
+    - Install `Moon-Storage` by running:
 
-   ```sh
-   git clone https://github.com/gitsignore/moon-storage && cd moon-storage
-   ```
+    ```sh
+    > git clone https://github.com/gitsignore/moon-storage && cd moon-storage
+    ```
 
-   - Use `Moon-Storage`'s integrated console to launch the app:
+    - Build `Moon-Storage`'s app according to your hardware and your environment:
 
-   ```sh
-   bin/console start
-   ```
+    ```sh
+    # Production build
+    > docker build -t moon-storage .
 
-   - Open your browser to <http://localhost:8080/teams>
+    # Development build
+    > docker build -f Dockerfile-dev -t moon-storage .
 
-     Replace the default 8080 port by another one in `.env` file
+    # Arm v7 build (aka: Raspberry Pi)
+    > docker build -f Dockerfile-arm32v7 -t moon-storage .
+    ```
 
-2. Local Node/npm installation
+    - Run `Moon-Storage`'s app:
 
-   - Install `Moon-Storage` by running:
+    ```sh
+    > docker run -p 8080:8080 --name moon-storage -d moon-storage
+    ```
 
-   ```sh
-   git clone https://github.com/gitsignore/moon-api && cd moon-api
-   ```
+    > You can provide parameters on run like:
+    >
+    > - Application port : -p <host_port>:8080
+    > - Database data volume : -v <host_data_folder>:/usr/app/data
+    > - Cors origin URI : -e CORS_ORIGIN_URI='http://localhost:3000'
 
-   - Then install dependencies:
+    - Open your browser to <http://localhost:8080/teams>
 
-   ```sh
-   npm install
-   ```
+2.  Local Node/npm installation
 
-   - Launch `Moon-Storage` app with:
+    - Install `Moon-Storage` by running:
 
-   ```sh
-   node index.js
-   ```
+    ```sh
+    > git clone https://github.com/gitsignore/moon-storage && cd moon-storage
+    ```
 
-   - Open your browser to <http://localhost:8080/teams>
+    - Then install dependencies:
 
-   Replace the default 8080 port by another one in `.env` file
+    ```sh
+    > npm install
+    ```
+
+    - Launch `Moon-Storage` app with:
+
+    ```sh
+    > npm run dev
+    ```
+
+    - Open your browser to <http://localhost:8080/teams>
+
+    Replace the default 8080 port by another one in `.env` file
 
 ## License
 
