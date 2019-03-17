@@ -1,5 +1,6 @@
 require('dotenv').config();
 const express = require('express');
+const socket = require('socket.io');
 const events = require('events');
 const cors = require('cors');
 const compression = require('compression');
@@ -14,7 +15,7 @@ const userRoutes = require('./components/user/routes');
 
 const app = express();
 const server = app.listen(process.env.PORT || 8080);
-const io = require('socket.io')(server);
+const io = socket(server);
 
 app.use(favicon(`${__dirname}/../public/favicon.ico`));
 app.use(helmet());
@@ -34,32 +35,28 @@ app.use((req, res, next) => {
   const adapter = new FileAsync(`${__dirname}/../data/db.json`);
 
   low(adapter)
-    .then(db => {
+    .then((db) => {
       db.defaults({ teams: [] }).write();
       return db;
     })
-    .then(db => {
+    .then((db) => {
       res.locals.db = db;
 
-      em.on('update_teams', () =>
-        io.emit(
-          'update_teams',
-          db
-            .get('teams')
-            .sortBy('name')
-            .value()
-        )
-      );
+      em.on('update_teams', () => io.emit(
+        'update_teams',
+        db
+          .get('teams')
+          .sortBy('name')
+          .value()
+      ));
 
-      em.on('update_team', id =>
-        io.emit(
-          `update_team_${id}`,
-          db
-            .get('teams')
-            .find({ id })
-            .value()
-        )
-      );
+      em.on('update_team', id => io.emit(
+        `update_team_${id}`,
+        db
+          .get('teams')
+          .find({ id })
+          .value()
+      ));
       next();
     });
 
@@ -71,7 +68,4 @@ const router = express.Router({ mergeParams: true });
 router.use('/teams', teamRoutes);
 router.use('/teams/:teamId/users', userRoutes);
 app.use('/', router);
-app.use(
-  '/',
-  router.get('/', (req, res) => res.json('Welcome to Moon-Storage'))
-);
+app.use('/', router.get('/', (req, res) => res.json('Welcome to Moon-Storage')));
