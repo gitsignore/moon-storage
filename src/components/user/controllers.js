@@ -30,7 +30,7 @@ exports.postUsers = async (req, res) => {
   const id = req.params.teamId;
   const user = await res.locals.db
     .get('teams')
-    .find({ id: id })
+    .find({ id })
     .get('users')
     .push(req.body)
     .last()
