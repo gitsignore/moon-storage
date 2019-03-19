@@ -24,7 +24,7 @@ exports.postTeams = async (req, res) => {
     return res.status(422).json({ errors: errors.mapped() });
   }
 
-  const name = req.body.name;
+  const { name } = req.body;
 
   const alreadyExists = res.locals.db
     .get('teams')
@@ -63,8 +63,8 @@ exports.putTeam = async (req, res) => {
   }
 
   const id = req.params.teamId;
-  const name = req.body.name;
-  const body = req.body;
+  const { name } = req.body;
+  const { body } = req;
 
   if (name !== id) {
     const alreadyExists = res.locals.db
@@ -75,7 +75,7 @@ exports.putTeam = async (req, res) => {
     body.id = name;
 
     if (alreadyExists) {
-      return await res.status(409).json({
+      return res.status(409).json({
         errors: {
           name: {
             location: 'body',
