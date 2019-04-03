@@ -30,8 +30,13 @@ const userSchema = ({ checkId, onlyId } = { checkId: true, onlyId: false }) => {
       },
       isIn: {
         options: [['online', 'busy', 'away', 'offline']],
-        errorMessage:
-          'status should have one of these values : online, busy, away or offline'
+        errorMessage: 'status should have one of these values : online, busy, away or offline'
+      }
+    };
+    schema.location = {
+      trim: true,
+      exists: {
+        errorMessage: 'Location key should exists'
       }
     };
     schema.message = {
