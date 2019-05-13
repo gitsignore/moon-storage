@@ -88,7 +88,7 @@ exports.putTeam = async (req, res) => {
     }
   }
 
-  const team = res.locals.db
+  const team = await res.locals.db
     .get('teams')
     .find({ id })
     .assign(body)

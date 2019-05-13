@@ -32,7 +32,7 @@ app.use(logger('dev'));
 const em = new events.EventEmitter();
 
 app.use((req, res, next) => {
-  const adapter = new FileAsync(`${__dirname}/../data/db.json`);
+  const adapter = new FileAsync(process.env.DB_STORAGE_PATH || `${__dirname}/../data/db.json`);
 
   low(adapter)
     .then((db) => {
@@ -68,4 +68,4 @@ const router = express.Router({ mergeParams: true });
 router.use('/teams', teamRoutes);
 router.use('/teams/:teamId/users', userRoutes);
 app.use('/', router);
-app.use('/', router.get('/', (req, res) => res.json('Welcome to Moon-Storage')));
+app.use('/', router.get('/', (req, res) => res.json('Moon-Storage')));

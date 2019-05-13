@@ -1,10 +1,6 @@
 const { Router } = require('express');
 const {
-  getTeams,
-  postTeams,
-  getTeam,
-  putTeam,
-  deleteTeam
+  getTeams, postTeams, getTeam, putTeam, deleteTeam
 } = require('./controllers');
 const teamSchema = require('./schema.js');
 

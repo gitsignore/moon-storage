@@ -1,10 +1,6 @@
 const express = require('express');
 const {
-  getUsers,
-  postUsers,
-  getUser,
-  putUser,
-  deleteUser
+  getUsers, postUsers, getUser, putUser, deleteUser
 } = require('./controllers');
 const userSchema = require('./schema.js');
 
