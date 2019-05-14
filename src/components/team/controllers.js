@@ -6,7 +6,7 @@ exports.getTeams = (req, res) => {
     .sortBy('name')
     .value();
 
-  res.json(teams);
+  return res.json(teams);
 };
 
 exports.getTeam = (req, res) => {
@@ -15,7 +15,7 @@ exports.getTeam = (req, res) => {
     .find({ id: req.params.teamId })
     .value();
 
-  res.json(team);
+  return res.json(team);
 };
 
 exports.postTeams = async (req, res) => {
@@ -53,7 +53,7 @@ exports.postTeams = async (req, res) => {
 
   res.locals.em.emit('update_teams');
 
-  res.status(201).json(team);
+  return res.status(201).json(team);
 };
 
 exports.putTeam = async (req, res) => {
@@ -97,7 +97,7 @@ exports.putTeam = async (req, res) => {
   res.locals.em.emit('update_teams');
   res.locals.em.emit('update_team', id);
 
-  res.json(team);
+  return res.json(team);
 };
 
 exports.deleteTeam = (req, res) => {
@@ -115,5 +115,5 @@ exports.deleteTeam = (req, res) => {
   res.locals.em.emit('update_teams');
   res.locals.em.emit('update_team', id);
 
-  res.json({ id });
+  return res.json({ id });
 };

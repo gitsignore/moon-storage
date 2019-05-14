@@ -7,7 +7,7 @@ exports.getUsers = (req, res) => {
     .get('users')
     .value();
 
-  res.json(users);
+  return res.json(users);
 };
 
 exports.getUser = (req, res) => {
@@ -18,7 +18,7 @@ exports.getUser = (req, res) => {
     .find({ id: req.params.userId })
     .value();
 
-  res.json(users);
+  return res.json(users);
 };
 
 exports.postUsers = async (req, res) => {
@@ -39,7 +39,7 @@ exports.postUsers = async (req, res) => {
 
   res.locals.em.emit('update_team', id);
 
-  res.status(201).json(user);
+  return res.status(201).json(user);
 };
 
 exports.putUser = async (req, res) => {
@@ -59,7 +59,7 @@ exports.putUser = async (req, res) => {
 
   res.locals.em.emit('update_team', id);
 
-  res.json(user);
+  return res.json(user);
 };
 
 exports.deleteUser = (req, res) => {
@@ -78,5 +78,5 @@ exports.deleteUser = (req, res) => {
 
   res.locals.em.emit('update_team', id);
 
-  res.send({ userId: req.params.userId });
+  return res.send({ userId: req.params.userId });
 };
