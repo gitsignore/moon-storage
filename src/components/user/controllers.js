@@ -1,4 +1,4 @@
-const { validationResult } = require('express-validator/check');
+const { validationResult } = require('express-validator');
 
 exports.getUsers = (req, res) => {
   const users = res.locals.db
@@ -11,14 +11,18 @@ exports.getUsers = (req, res) => {
 };
 
 exports.getUser = (req, res) => {
-  const users = res.locals.db
+  const user = res.locals.db
     .get('teams')
     .find({ id: req.params.teamId })
     .get('users')
     .find({ id: req.params.userId })
     .value();
 
-  return res.json(users);
+  if (!user) {
+    return res.status(404).json({ error: 'User not found.' });
+  }
+
+  return res.json(user);
 };
 
 exports.postUsers = async (req, res) => {

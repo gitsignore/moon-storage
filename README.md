@@ -4,7 +4,7 @@ This is the API part of the following application [Moon](https://github.com/gits
 
 ## Installation
 
-1.  Local Docker installation
+1. Local Docker installation
 
     - Install `Moon-Storage` by running:
 
@@ -28,7 +28,11 @@ This is the API part of the following application [Moon](https://github.com/gits
     - Run `Moon-Storage`'s app:
 
     ```sh
+    # Production run
     > docker run -p 8080:8080 --name moon-storage -d moon-storage
+
+    # Development run
+    > docker run -p 8080:8080 -v $(pwd):/usr/app --name moon-storage -d moon-storage
     ```
 
     > You can provide parameters on run like:
@@ -39,7 +43,7 @@ This is the API part of the following application [Moon](https://github.com/gits
 
     - Open your browser to <http://localhost:8080/teams>
 
-2.  Local Node/npm installation
+2. Local Node/npm installation
 
     - Install `Moon-Storage` by running:
 

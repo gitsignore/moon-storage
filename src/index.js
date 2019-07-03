@@ -42,7 +42,7 @@ app.use((req, res, next) => {
     .then((db) => {
       res.locals.db = db;
 
-      em.on('update_teams', () => io.emit(
+      em.once('update_teams', () => io.emit(
         'update_teams',
         db
           .get('teams')
@@ -50,7 +50,7 @@ app.use((req, res, next) => {
           .value()
       ));
 
-      em.on('update_team', id => io.emit(
+      em.once('update_team', id => io.emit(
         `update_team_${id}`,
         db
           .get('teams')

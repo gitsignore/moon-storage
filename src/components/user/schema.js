@@ -1,4 +1,4 @@
-const { checkSchema } = require('express-validator/check');
+const { checkSchema } = require('express-validator');
 
 const userSchema = ({ checkId, onlyId } = { checkId: true, onlyId: false }) => {
   const schema = {};
@@ -30,7 +30,8 @@ const userSchema = ({ checkId, onlyId } = { checkId: true, onlyId: false }) => {
       },
       isIn: {
         options: [['online', 'busy', 'away', 'offline']],
-        errorMessage: 'status should have one of these values : online, busy, away or offline'
+        errorMessage:
+          'status should have one of these values : online, busy, away or offline'
       }
     };
     schema.location = {

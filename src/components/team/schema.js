@@ -1,4 +1,4 @@
-const { checkSchema } = require('express-validator/check');
+const { checkSchema } = require('express-validator');
 
 const teamSchema = ({ checkId, onlyId } = { checkId: true, onlyId: false }) => {
   const schema = {};

@@ -1,4 +1,4 @@
-const { validationResult } = require('express-validator/check');
+const { validationResult } = require('express-validator');
 
 exports.getTeams = (req, res) => {
   const teams = res.locals.db
@@ -14,6 +14,10 @@ exports.getTeam = (req, res) => {
     .get('teams')
     .find({ id: req.params.teamId })
     .value();
+
+  if (!team) {
+    return res.status(404).json({ error: 'Team not found.' });
+  }
 
   return res.json(team);
 };

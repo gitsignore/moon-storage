@@ -15,6 +15,4 @@ COPY pm2.json .
 ENV NPM_CONFIG_LOGLEVEL warn
 RUN npm install --production
 
-EXPOSE 8080
-
 CMD [ "pm2-runtime", "start", "pm2.json" ]
