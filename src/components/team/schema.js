@@ -18,6 +18,11 @@ const teamSchema = ({ checkId, onlyId } = { checkId: true, onlyId: false }) => {
         errorMessage: 'Avatar key should exists'
       }
     };
+    schema.backgroundUrl = {
+      exists: {
+        errorMessage: 'backgroundUrl key should exists'
+      }
+    };
     schema.message = {
       exists: {
         errorMessage: 'Message key should exists'
